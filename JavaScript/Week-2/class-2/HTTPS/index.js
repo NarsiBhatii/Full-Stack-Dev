@@ -19,6 +19,8 @@ app.post('/conversation', function(req,res){
     msg: '2 + 2 is 4'
   })
 })
+
+// make all the files in /public available
 app.listen(port, function() {
   console.log(`Example app listening at http://localhost:${port}`)
 })
