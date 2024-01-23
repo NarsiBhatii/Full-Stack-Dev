@@ -4,9 +4,7 @@ function sum(a ,b) {
 
 function timeOut() {
     const p = new Promise(function(resolve) {
-        setTimeout(function() {
-            console.log("Hello")
-        },1000)
+        setTimeout(resolve,1000)
     }) 
     return p
 }
