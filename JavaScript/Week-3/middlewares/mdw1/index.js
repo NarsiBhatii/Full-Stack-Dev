@@ -32,6 +32,9 @@ app.get('/health-checkup',userMiddleware,kidneyMiddleware,(req, res) => {
     res.json({ msg: "your kidneys are fine!" })
 })
 
+app.get('/nothing',(req,res) => {
+    res.send("this is nothing route")
+})
 app.listen(port,() => {
     console.log(`server is running on post: ${port}`)
 })
