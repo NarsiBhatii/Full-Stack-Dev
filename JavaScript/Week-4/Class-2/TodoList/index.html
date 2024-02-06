@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 50%;
+    }
+
+    .container>div {
+        /* Parent div styles */
+        border: 1px solid #ccc;
+        padding: 20px;
+        background-color: #f0f0f0;
+        margin-bottom: 10px;
+        /* Add margin between each child div */
+    }
+
+    .container>div>div {
+        /* Styles for child div elements directly under parent-div */
+        padding: 10px;
+    }
+
+    .container>div>button {
+        /* Styles for button element directly under parent-div */
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+<script>
+    let globalID = 1;
+    const createChild = (title, Description, id) => {
+        const child = document.createElement('div');
+        const firstGrandChild = document.createElement('div')
+        firstGrandChild.innerHTML = title
+        const secondGrandChild = document.createElement('div')
+        secondGrandChild.innerHTML = Description
+        const thirdGrandChild = document.createElement('button')
+        thirdGrandChild.innerHTML = "Mark as done"
+        thirdGrandChild.setAttribute("onclick", `markAsDone(${id})`)
+
+        child.appendChild(firstGrandChild)
+        child.appendChild(secondGrandChild)
+        child.appendChild(thirdGrandChild)
+        child.setAttribute("id", id)
+        return child;
+    }
+    const addTodo = () => {
+        let title = document.getElementById('todoTitle').value;
+        let Description = document.getElementById('todoDescription').value
+        const element = document.getElementById('container')
+        element.appendChild(createChild(title, Description, globalID++))
+    }
+
+    const markAsDone = (id) => {
+        const parent = document.getElementById(id);
+        // parent.children[2].innerHTML = "Done!"
+        parent.remove()
+    }
+</script>
+
+<body>
+    <div>
+        <input type="text" placeholder="Todo title" id="todoTitle"><br>
+        <input type="text" placeholder="Description" id="todoDescription"><br>
+        <button onclick="addTodo()">Add Todo</button><br><br>
+    </div>
+    <div class="container" id="container"></div>
+</body>
+
+</html>
